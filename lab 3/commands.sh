@@ -1,6 +1,5 @@
 #!/bin/bash
 
-
 #Install ftpd service on your laptop
 sudo apt install vsftpd
 	
@@ -18,6 +17,7 @@ sudo ufw enable
 #block port 21 and 21 (tcp) using ufw
 sudo ufw deny 20/tcp
 sudo ufw deny 21/tcp
+
 #try to connect to ftp service.
 ftp localhost
 
@@ -33,11 +33,15 @@ sudo ufw allow 2049/udp
 
 #create and share /tmp/shares folder using exportfs command  and /etc/exports file
 mkdir /tmp/shares
-cat "/tmp/shares *(rw)" >> /etc/exports
+echo "/tmp/shares *(rw)" >> /etc/exports
+sudo exportfs -a
+
 #mount the remote share on /mnt folder (you can using localhost as well)
-	
+sudo mount -t nfs localhost:/tmp/shares /mnt
+
 #copy some files to the remote share
-	
+cp /tmp/test.txt /mnt
+
 #save iptables rules to /tmp/iptables-backup file
 sudo iptables-save > /tmp/iptables-backup
 
