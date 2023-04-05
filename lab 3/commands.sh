@@ -33,14 +33,14 @@ sudo ufw allow 2049/udp
 
 #create and share /tmp/shares folder using exportfs command  and /etc/exports file
 mkdir /tmp/shares
-echo "/tmp/shares *(rw)" >> /etc/exports
+sudo echo "/tmp/shares *(rw)" >> /etc/exports
 sudo exportfs -a
 
 #mount the remote share on /mnt folder (you can using localhost as well)
 sudo mount -t nfs localhost:/tmp/shares /mnt
 
 #copy some files to the remote share
-cp /tmp/test.txt /mnt
+sudo cp /tmp/test.txt /mnt
 
 #save iptables rules to /tmp/iptables-backup file
 sudo iptables-save > /tmp/iptables-backup
