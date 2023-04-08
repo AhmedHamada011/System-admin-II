@@ -1,3 +1,4 @@
+#!/bin/bash
 #Using apt install apache2 server
 sudo apt install apache2
 
@@ -10,14 +11,14 @@ sudo echo '<html>
 sudo apt install libapache2-mod-php8.1
 
 #create new Named VirtulHost to serve new php project with special access log 
-echo '<VirtualHost *:80>
-    ServerName myProject.local
-    DocumentRoot /var/www/html/myProject
-	ServerAdmin webmaster@localhost
-	DocumentRoot "/var/www/html/myProject"
-	ErrorLog ${APACHE_LOG_DIR}/error-myProject.log
-	CustomLog ${APACHE_LOG_DIR}/access-myProject.log combined
-</VirtualHost>' > /etc/apache2/sites-available/myProject.conf
+sudo echo '<VirtualHost *:80>
+        ServerName myProject.local
+        DocumentRoot /var/www/html/myProject
+	    ServerAdmin webmaster@localhost
+	    DocumentRoot "/var/www/html/myProject"
+	    ErrorLog ${APACHE_LOG_DIR}/error-myProject.log
+	    CustomLog ${APACHE_LOG_DIR}/access-myProject.log combined
+    </VirtualHost>' > /etc/apache2/sites-available/myProject.conf
 
 #create simple index.php file for the php site
 echo '<?php
